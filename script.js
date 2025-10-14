@@ -58,10 +58,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ACTIVE NAV LINK HIGHLIGHTING
 // ============================================================================
 
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
+let sections;
+let navLinks;
+
+function initActiveLinks() {
+    sections = document.querySelectorAll('section');
+    navLinks = document.querySelectorAll('.nav-link');
+}
 
 function updateActiveLink() {
+    if (!sections || !navLinks) return;
+
     const scrollPosition = window.scrollY + 150;
 
     sections.forEach(section => {
@@ -82,6 +89,10 @@ function updateActiveLink() {
 
 window.addEventListener('scroll', updateActiveLink);
 window.addEventListener('load', updateActiveLink);
+document.addEventListener('sectionsLoaded', () => {
+    initActiveLinks();
+    updateActiveLink();
+});
 
 // ============================================================================
 // FADE-IN ANIMATION ON SCROLL
@@ -102,7 +113,7 @@ const fadeInObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Apply fade-in animation to cards and publications
-document.addEventListener('DOMContentLoaded', () => {
+function initFadeInAnimations() {
     const animatedElements = document.querySelectorAll(
         '.research-card, .publication, .teaching-card, .contact-card, .skill-category'
     );
@@ -113,7 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         fadeInObserver.observe(el);
     });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initFadeInAnimations);
+document.addEventListener('sectionsLoaded', initFadeInAnimations);
 
 // ============================================================================
 // YEAR UPDATE IN FOOTER
