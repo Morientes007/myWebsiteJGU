@@ -146,12 +146,41 @@ body {
     pointer-events: none;
 }
 
+/* Floating code snippets animation */
+#hero::after {
+    content: 'foldr fmap >>= λx → ∀ ⊢ type class instance theorem proof data where case of let in do';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    opacity: 0.03;
+    white-space: pre-wrap;
+    word-spacing: 4rem;
+    line-height: 3;
+    animation: floatCode 40s linear infinite;
+    pointer-events: none;
+    overflow: hidden;
+}
+
 @keyframes backgroundScroll {
     0% {
         transform: translateX(0) translateY(0);
     }
     100% {
         transform: translateX(70px) translateY(70px);
+    }
+}
+
+@keyframes floatCode {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20%);
     }
 }
 
@@ -235,12 +264,13 @@ body {
 
 .btn-primary {
     background-color: var(--bg-white);
-    color: var(--primary-color);
+    color: var(--text-primary);
+    border: 2px solid var(--primary-color);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background-color: var(--primary-color);
+    color: var(--bg-white);
 }
 
 .btn-secondary {
@@ -390,41 +420,23 @@ section:nth-child(even) {
    ============================================================================ */
 
 .research-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .research-card {
-    padding: 2rem;
+    padding: 1.5rem;
     background-color: var(--bg-white);
     border-radius: 0.5rem;
-    box-shadow: var(--shadow-md);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-left: 3px solid transparent;
 }
 
-/* Different background colors for each research card */
-.research-card:nth-child(1) {
-    background-color: #F0FDF4; /* mint */
-}
-
-.research-card:nth-child(2) {
-    background-color: #EFF6FF; /* blue */
-}
-
-.research-card:nth-child(3) {
-    background-color: #FFF7ED; /* peach */
-}
-
-.research-card:nth-child(4) {
-    background-color: #FAF5FF; /* lavender */
-}
-
 .research-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border-left-color: var(--primary-color);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateX(5px);
 }
 
 .research-card h3 {
@@ -711,10 +723,6 @@ footer p {
 
     .section-title {
         font-size: 2rem;
-    }
-
-    .research-grid {
-        grid-template-columns: 1fr;
     }
 
     .publication {
