@@ -132,58 +132,6 @@ body {
     overflow: hidden;
 }
 
-/* Animated background pattern */
-#hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(52, 211, 153, .02) 35px, rgba(52, 211, 153, .02) 70px);
-    animation: backgroundScroll 20s linear infinite;
-    pointer-events: none;
-}
-
-/* Floating code snippets animation */
-#hero::after {
-    content: 'foldr fmap >>= λx → ∀ ⊢ type class instance theorem proof data where case of let in do';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-family: 'Courier New', monospace;
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    opacity: 0.15;
-    white-space: pre-wrap;
-    word-spacing: 4rem;
-    line-height: 3;
-    animation: floatCode 40s linear infinite;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
-}
-
-@keyframes backgroundScroll {
-    0% {
-        transform: translateX(0) translateY(0);
-    }
-    100% {
-        transform: translateX(70px) translateY(70px);
-    }
-}
-
-@keyframes floatCode {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-20%);
-    }
-}
 
 .hero-content {
     display: grid;
@@ -194,36 +142,6 @@ body {
     z-index: 1;
 }
 
-/* Fade-in animations */
-.hero-text {
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.hero-image {
-    animation: fadeInRight 0.8s ease-out 0.2s both;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
 
 .hero-text h1 {
     font-size: 3rem;
@@ -549,6 +467,10 @@ section:nth-child(even) {
     gap: 2rem;
 }
 
+.teaching-section {
+    margin-bottom: 3rem;
+}
+
 .teaching-card {
     padding: 2rem;
     background-color: var(--bg-white);
@@ -566,6 +488,30 @@ section:nth-child(even) {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
+}
+
+.teaching-statement-section {
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+    padding: 3rem;
+    border-radius: 0.75rem;
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.teaching-statement-section h3 {
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.teaching-statement-section .btn {
+    margin-top: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .course {
