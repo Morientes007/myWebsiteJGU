@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://morientes007.github.io/myWebsiteJGU/sitemap.xml
